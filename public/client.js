@@ -78,29 +78,25 @@ function draw() {
     let x = map(-rectangle.x, -xWorld, 0, 0, windowWidth)
     let y = map(rectangle.y, 0, yWorld, 0, windowHeight)
     rect(x, y, rectangle.width, rectangle.height)
-    textAlign(CENTER)
-    text(me.id)
     pop()
   })
-  //
-  // // Draw other players
-  // for (let id in players) {
-  //   if (id === player_id) { continue; }
-  //
-  //   let player = players[id]
-  //   let playerSize = player.visible ? (player.size + (currentTime - player.lastVisibleAt) / 100) : player.size
-  //   let x = map(player.xPos - me.xPos, -xWorld, xWorld, -windowWidth / 2, windowWidth / 2)
-  //   let y = map(player.yPos - me.yPos, -yWorld, yWorld, -windowHeight / 2, windowHeight / 2)
-  //
-  //   push()
-  //   fill("magenta")
-  //   ellipseMode(CENTER)
-  //   ellipse(x, y, playerSize, playerSize)
-  //   textAlign(CENTER)
-  //   text(player.id)
-  //   pop()
-  // }
-  //
+
+  // Draw other players
+  for (let id in players) {
+    if (id === player_id) { continue; }
+
+    let player = players[id]
+    player.rectangles.forEach(function(rectangle) {
+      push()
+      rectMode(CENTER)
+      let x = map(-rectangle.x, -xWorld, 0, 0, windowWidth)
+      let y = map(rectangle.y, 0, yWorld, 0, windowHeight)
+      fill("magenta")
+      rect(x, y, rectangle.width, rectangle.height)
+      pop()
+    })
+  }
+
 
   if (DEBUG) {
     textAlign(CENTER)
