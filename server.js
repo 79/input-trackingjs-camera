@@ -20,6 +20,10 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
+function randomInt(min, max) {
+  return Math.floor( Math.random() * (max - min) + min );
+}
+
 io.sockets.on('connection',
   function (socket) {
 
@@ -28,7 +32,8 @@ io.sockets.on('connection',
 
     let player = {
       id: socket.id,
-      rectangles: [{x:1, y:1, width: 10, height: 100}]
+      rectangles: [{x:1, y:1, width: 10, height: 100}],
+      color: { r: randomInt(100, 255), g: randomInt(100, 255), b: randomInt(100, 255) }
     }
     players[socket.id] = player
 

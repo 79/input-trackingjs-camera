@@ -77,6 +77,7 @@ function draw() {
     rectMode(CENTER)
     let x = map(-rectangle.x, -xWorld, 0, 0, windowWidth)
     let y = map(rectangle.y, 0, yWorld, 0, windowHeight)
+    fill("white")
     rect(x, y, rectangle.width, rectangle.height)
     pop()
   })
@@ -86,15 +87,17 @@ function draw() {
     if (id === player_id) { continue; }
 
     let player = players[id]
+    push()
+    rectMode(CENTER)
+    fill(player.color.r, player.color.g, player.color.b)
+
     player.rectangles.forEach(function(rectangle) {
-      push()
-      rectMode(CENTER)
       let x = map(-rectangle.x, -xWorld, 0, 0, windowWidth)
       let y = map(rectangle.y, 0, yWorld, 0, windowHeight)
-      fill("magenta")
       rect(x, y, rectangle.width, rectangle.height)
-      pop()
     })
+
+    pop()
   }
 
 
